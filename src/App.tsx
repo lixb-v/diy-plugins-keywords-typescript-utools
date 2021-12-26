@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+import { Spin } from 'antd';
 import { 
   BrowserRouter,
   Routes,
@@ -12,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Suspense fallback={<div>Loading......</div>}>
+        <Suspense fallback={null}>
           <Routes>
             <Route path="/" element={ <Navigate to="/home/DIYKeyWord"/> }></Route>
             { routes.map(route => {
@@ -26,7 +27,7 @@ function App() {
             }) }
           </Routes>
         </Suspense>
-      </BrowserRouter>
+      </BrowserRouter> 
     </div>
   );
 }

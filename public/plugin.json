@@ -1,0 +1,21 @@
+{
+	"main": "index.html",
+	"logo": "logo.png",
+	"preload":"preload.js",
+	"platform": ["win32"],
+	"features": [
+		{
+		  "code": "configure",
+		  "explain": "diy插件关键字",
+			"cmds":["diy", "plugins", "diyPlugins"]
+		},
+		{
+		  "code": "open",
+		  "explain": "快捷打开本地资源",
+			"cmds":["open", "local", "openloacl"]
+		}
+	],
+  "development": {
+    "main": "http://localhost:3000/"
+  }
+}

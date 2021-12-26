@@ -1,23 +1,35 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import {  useDispatch, useSelector} from 'react-redux';
-import { CombinedState } from '@/store/reducers';
-import { AddState } from '@/store/reducers/addReducer';
+import React, { useState } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { Card } from 'antd';
+interface TabItem {
+  tab: string,
+  key: string
+}
 function Home() {
+  const navigate = useNavigate()
   // Dispath函数
-  console.log(useDispatch());
+  const [ tabList ] = useState<TabItem[]>([{
+    tab: 'DIY关键字',
+    key: '/home/DIYKeyWord'
+  }, {
+    tab: '快捷资源',
+    key: '/home/openLocal'
+  }])
+  const [ activeTabKey, setActiveTabKey ] = useState<string>(tabList[0].key)
   
-  // 获取state
-  const number = useSelector<CombinedState, AddState['number']>((state) => {
-    return state.addReducer.number
-  })
-  console.log(number);
-  
+  const tabChange = (key: string):void => {
+    navigate(key)
+    setActiveTabKey(key)
+  }
   return (
-    <div>
-      Home
-      <Outlet />
-    </div>
+    <Card
+      style={{ width: '100%' }}
+      tabList={tabList}
+      activeTabKey={activeTabKey}
+      onTabChange={tabChange}
+     >
+       <Outlet />
+     </Card>
   );
 }
 
